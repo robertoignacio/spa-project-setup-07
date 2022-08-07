@@ -687,6 +687,7 @@ To use this:
         This can be achieved by using the mini-css-extract-plugin,
         (MiniCssExtractPlugin.loader) because it creates separate css files.
         This will build code that runs faster.
+        Also, can be used when you need to see the css output, css injected prefixes, etc.
 
     For development mode builds (including webpack-dev-server):
         Use style-loader, because it injects CSS into the DOM using multiple and works faster.
@@ -975,36 +976,25 @@ To use this:
 ------------------------------------------------------
 26. Create a list of supported web browsers: Browserlist
 
+    It is a config to share target browsers and Node.js versions between different front-end tools,
+    to compatibilize code that will reach those targets, so if a feature cannot work there then make the targets deal with the best fallbacks.
+
+    Is useful because can be integrated to the flow of Autoprefixer
+    to only include css prefixes for the supported targets.
+    (For instance, only include webkit because all iOS browsers use WebKit)
+
+    It is used in: 
+        postcss autoprefixer
+        babel-preset-env
+        postcss-preset-env
+        eslint-plugin-compat
+        stylelint-no-unsupported-browser-features
+        postcss-normalize
+        obsolete-webpack-plugin
+
+    Note that at least babel and postcss read from browserslist. 
+
     https://github.com/browserslist/browserslist
-
-    It is a config to share target browsers and Node.js versions between different front-end tools. 
-    It is used in: Autoprefixer, Babel, postcss-preset-env, eslint-plugin-compat, stylelint-no-unsupported-browser-features, postcss-normalize, obsolete-webpack-plugin
-
-    All tools will find target browsers automatically, 
-    when you add the following to package.json
-
-    this default:
-
-    "browserslist": [
-        "defaults",
-        maintained node versions
-    ]
-
-    or this one:
-
-    "browserslist": [
-        "cover 99.5%",
-        "since 2015",
-        "not ie < 11",
-        "maintained node versions"
-    ]
-
-    Run npx browserslist in project directory to see what browsers was selected by your queries.
-    Note: All iOS browsers use WebKit
-
-
-    Developers set their version lists using queries like last 2 versions to be free from updating versions manually.
-    But don’t remove browsers just because you don’t know them.
 
     Browserslist will take queries from:
         tool option
@@ -1014,24 +1004,122 @@ To use this:
         or environment variables.
 
 
+    There are 2 ways for setting the rules.
+    One is at the .browserslistrc, the other is at the package.json.
+    Each line in the file is a rule.
+
+    First:
+    Verify the installation of browserslist.
+    It was installed previously as dependency of another one.
+    To verify the installation, run:
+
+        $ npx browserslist --version
+    
+
+    Second,
+    at the root directory, create .browserslistrc
+
+    Recommended: add a "browserslist": ["rule 1","rule 2"] at package.json
+
+    
+    Third,
+    write the rules:
+    https://github.com/browserslist/browserslist#full-list
+
+        cover 99.5%
+        since 2015
+        not ie < 11
+        maintained node versions
+
+
+    Fourth,
+    run npx browserslist in project directory to see what browsers was selected by your queries.
+    (Don’t remove browsers just because you don’t know them)
+
+        $ npx browserslist
+    
+
+    Expected result:
+        at index-template.html
+            ...
+            <body>
+                <main>
+                    <p>Hello there! It werks! HEHE YEEEEAAAHHHH</p>
+                    <img id="laughImg" />
+                </main>
+            </body>
+
+        at _global.scss
+            ...
+            main {
+                display:flex;
+                flex-direction: column;
+            }
+
+        at webpack.config.js
+            ...
+            const buildMode = "production";
+        
+        at root dir, terminal:
+            $ npm run build
+
+        at /dist/out.css
+            ...
+            main {
+                -webkit-box-orient: vertical;
+                -webkit-box-direction: normal;
+                -moz-box-orient: vertical;
+                -moz-box-direction: normal;
+                display: -webkit-box;
+                display: -webkit-flex;
+                display: -moz-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-flex-direction: column;
+                -ms-flex-direction: column;
+                flex-direction: column
+            }
+
+            Works!
+
+
     Note: 
-    Some features of current JavaScript might not get transpiled by Babel to the target browsers, which will require a manual polyfill
+    Some features of current JavaScript might not get transpiled by Babel to the target browsers, 
+    which will require a manual polyfill.
 
     https://babeljs.io/docs/en/babel-preset-env
 
-    @babel/preset-env won't include any JavaScript syntax proposals less than Stage 3 because at that stage in the TC39 process, it wouldn't be implemented by any browsers anyway. Those would need to be included manually. The shippedProposals option will include Stage 3 proposals that some browsers have already implemented.
+    @babel/preset-env won't include any JavaScript syntax proposals less than Stage 3 
+    because at that stage in the TC39 process, it wouldn't be implemented by any browsers anyway. 
+    Those would need to be included manually. 
+    The shippedProposals option will include Stage 3 proposals that some browsers have already implemented.
 
-    @babel/preset-env takes any target environments you've specified and checks them against its mappings to compile a list of plugins and passes it to Babel.
+    @babel/preset-env takes any target environments you've specified and checks them against its mappings 
+    to compile a list of plugins and passes it to Babel.
 
     For browser- or Electron-based projects, we recommend using browserslist to specify targets.
 
-    By default @babel/preset-env will use browserslist config sources unless either the targets or ignoreBrowserslistConfig options are set.
+    By default @babel/preset-env will use browserslist config sources unless either the targets 
+    or ignoreBrowserslistConfig options are set.
+
+
+------------------------------------------------------
+27.
 
 
 
+------------------------------------------------------
+28.
 
 
 
+------------------------------------------------------
+29.
+
+
+
+------------------------------------------------------
+30.
 
 
 

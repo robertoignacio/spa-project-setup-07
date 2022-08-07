@@ -32,9 +32,9 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, "dist"),
         filename: "[name].js",
-        assetModuleFilename: "images/[name][ext]"
+        assetModuleFilename: "images/[name][ext]",
         //filename: "[name][contenthash].js",
-        //clean: true
+        clean: true,
     },
     module: {
         rules: [

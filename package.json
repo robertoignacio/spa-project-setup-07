@@ -29,12 +29,6 @@
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.9.3"
   },
-  "browserslist": [
-    "cover 99.5%",
-    "since 2015",
-    "not ie < 11",
-    "maintained node versions"
-  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/robertoignacio/spa-project-setup-07.git"
