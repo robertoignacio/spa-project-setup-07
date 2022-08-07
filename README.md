@@ -2,7 +2,7 @@
 Project Setup for SPA with webpack conditional build
 
 Conditional controlled at the webpack.config.js\
-module.exports: { mode: buildMode variable, }
+module.exports = { mode: buildMode, }
 
 At buildMode: "development" will build with [style-loader] (injects the css into the js)\
 At buildMode: "production" will build with [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader", "sass-loader",]
