@@ -50,10 +50,10 @@ module.exports = {
             {
                 test: /\.(sa|sc|c)ss$/,
                 use: [
-                    // if true use "style-loader", if false use "others"
+                    // if true use "style-loader", if false use "MiniCssExtractPlugin.loader"
                     buildMode !== "production" ? "style-loader" : MiniCssExtractPlugin.loader,
                     "css-loader",
-                    //"postcss-loader",
+                    "postcss-loader",
                     "sass-loader",
                 ],
             },
@@ -62,7 +62,7 @@ module.exports = {
                 dependency: { not: ['url'] },
                 type: "asset/resource",
             }
-        ]
+        ],
     },
     optimization: {
         minimizer: [
