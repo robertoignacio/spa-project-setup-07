@@ -15,7 +15,7 @@ Read the [Project Log](../main/project-notes/project-log.txt) for my written not
 - [x] Module Bundler: webpack, webpack-cli, webpack-dev-server
 - [x] JavaScript: @babel/core, @babel/preset-env, babel-loader
 - [x] HTML: html-webpack-plugin
-- [x] CSS: mini-css-extract-plugin, style-loader, css-loader, sass-loader, sass
+- [x] CSS: mini-css-extract-plugin, style-loader, css-loader, postcss-loader, sass-loader, sass, postcss
 - [x] Optimization: css-minimizer-webpack-plugin
 - [ ] TypeScript (TBA)
 - [ ] React (TBA)
