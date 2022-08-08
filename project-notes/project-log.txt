@@ -1209,7 +1209,7 @@ To use this:
 
     To be continued...
 
-    (I need to study React by itself to compress instrucctions here)
+    (I need to study React by itself to compress instructions here)
 
 
 
