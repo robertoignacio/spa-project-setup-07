@@ -1104,12 +1104,114 @@ To use this:
 
 
 ------------------------------------------------------
-27.
+27. Install project dependencies: react, react-dom
 
+    React is a declarative, efficient, and flexible JavaScript library for building user interfaces.
+    https://reactjs.org/
+
+    React will efficiently update and render just the right components when your data changes.
+    Build encapsulated components that manage their own state, then compose them to make complex UIs.
+    The component logic is written in JavaScript instead of templates.
+    JSX is optional and not required to use React.
+
+        If you’re creating a new single-page app, use Create React App or Vite.
+        Create React App doesn’t handle backend logic or databases; it just creates a frontend build pipeline.
+        Under the hood, it uses Babel and webpack.
+
+        If you’re building a server-rendered website with Node.js, try Next.js.
+        Next.js is a popular and lightweight framework for static and server‑rendered applications built with React. It includes styling and routing solutions.
+
+        If you’re building a static content-oriented website, try Gatsby.
+        It lets you use React components, but outputs pre-rendered HTML and CSS to guarantee the fastest load time.
+
+    A JavaScript build toolchain typically consists of:
+    1. A package manager, such as Yarn or npm. 
+    2. A bundler, such as Webpack or Parcel.
+    3. A compiler such as Babel.
+
+    https://www.npmjs.com/package/react
+    The react package contains only the functionality necessary to define React components.
+    It is typically used together with a React renderer like react-dom for the web, 
+    or react-native for the native environments.
+    Note: by default, React will be in development mode.
+
+    https://www.npmjs.com/package/react-dom
+    Serves as the entry point to the DOM and server renderers for React. 
+    It is intended to be paired with the generic React package.
+
+
+    First.
+    Install:
+    at the root dir of the project, in terminal (not as --save-dev):
+
+        $ npm install react react-dom
+    
+    Second.
+    To transpile the JSX: babel/preset-react
+
+    https://www.npmjs.com/package/@babel/preset-react
+    https://babeljs.io/docs/en/babel-preset-react
+
+    Install:
+
+        $ npm install --save-dev @babel/preset-react
+
+
+    Third.
+    Add it to the configuration file: babel.config.js, or .babelrc.json,
+    with options
+
+    at .babelrc.json
+
+        {
+            "presets": [
+                "@babel/preset-env",
+                ["@babel/preset-react", {
+                    "runtime": "automatic", // enables loading not only React JSX
+                    "importSource": "custom-jsx-library" // defaults to react (only in automatic runtime)
+                }],],
+        }
+
+
+    When dealing with multiple loaders can be useful to have a
+    babel.config.js
+
+        module.exports = {
+            presets: ["@babel/preset-env", ["@babel/preset-react", { /* options */ }]]
+        }
+    
+
+    Fourth.
+    Include React in the index.js (defined as the entry file in package.json)
+
+    at index.js
+    // import in ES6 syntax
+    import { render } from "react-dom";
+
+    // test if React is connected (without importing it, only react-dom)
+    render(<p>React is connected!</p>, document.getElementById("root"));
+
+    and, at the index-template.html
+    add:
+    <div id="root"></div>
+
+    (React requires a parent block to inject)
+
+    It is connected.
 
 
 ------------------------------------------------------
-28.
+28. Building React components
+
+    Create a directory at ./src and call it components
+
+    ./src/components
+
+    To be continued...
+
+    (I need to study React by itself to compress instrucctions here)
+
+
 
 
 

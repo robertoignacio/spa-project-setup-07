@@ -41,7 +41,12 @@ picture {
 body {
     background-color: variables.$bg;
     color: var(--text-clr-dark);
-    font-size: 5rem;
+    font-size: 1rem;
+}
+
+p {
+    color: yellow;
+    font-size: 2rem;
 }
 
 main {
